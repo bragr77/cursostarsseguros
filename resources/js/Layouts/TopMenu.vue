@@ -11,7 +11,7 @@
         <Dropdown>
           <template #trigger>
             <button class="align-middle rounded-full focus:shadow-outline-purple focus:outline-none" aria-label="Account" aria-haspopup="true">
-              {{ $page.props.auth.user.name }}
+                {{ $page.props.auth.user.name }} {{ $page.props.auth.user.lastname }}<i class="fa-solid fa-caret-down ms-2"></i>
             </button>
           </template>
 

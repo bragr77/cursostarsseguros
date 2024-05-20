@@ -25,6 +25,8 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'lastname',
+        'role_id',
         'email',
         'password',
     ];
@@ -58,4 +60,12 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function role(){
+        return $this->belongsTo(Role::class);
+    }
+
+    public function infocliente(){
+        return $this->hasOne(Infocliente::class);
+    }
 }
