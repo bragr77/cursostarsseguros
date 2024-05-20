@@ -7,16 +7,15 @@
         <img
             aria-hidden="true"
             class="object-cover w-full h-full"
-            src="/images/forgot-password-office.jpeg"
+            src="/images/forgot-password.jpg"
             alt="Office"
         />
       </div>
       <div class="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
         <div class="w-full">
-          <h1 class="mb-4 font-semibold text-gray-700">
-            Forgot your password? No problem. Just let us know your email address and we will email you a password reset
-            link that will allow you to choose a new one.
-          </h1>
+          <p class="mb-4 font-semibold text-gray-700">
+            ¿Olvidaste tu contraseña? Ningún problema. Simplemente háganos saber su dirección de correo electrónico y le enviaremos un enlace para restablecer su contraseña que le permitirá elegir una nueva.
+          </p>
 
           <div v-if="status" class="mb-4 text-sm font-medium text-green-600">
             {{ status }}
@@ -31,7 +30,7 @@
 
             <div class="flex items-center justify-end mt-4">
               <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                Email Password Reset Link
+                Enlace para restablecer contraseña
               </PrimaryButton>
             </div>
           </form>

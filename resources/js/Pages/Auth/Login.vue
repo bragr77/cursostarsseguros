@@ -30,22 +30,20 @@
                             <InputError class="mt-2" :message="form.errors.password" />
                         </div>
 
-                        <div class="block mt-4">
+                        <!-- <div class="block mt-4">
                             <label class="flex items-center">
                                 <Checkbox name="remember" v-model:checked="form.remember" />
                                 <span class="ml-2 text-sm text-gray-600">Remember me</span>
                             </label>
-                        </div>
+                        </div> -->
 
                         <div class="flex items-center justify-end mt-4">
-                            <Link v-if="canResetPassword" :href="route('password.request')"
-                                class="text-sm text-gray-600 underline  hover:text-gray-900">
-                            Forgot your password?
+                            <Link v-if="canResetPassword" :href="route('password.request')" class="text-sm text-gray-600 underline  hover:text-gray-900">
+                                ¿Olvidaste tu contraseña?
                             </Link>
 
-                            <PrimaryButton class="ml-4" :class="{ 'opacity-25': form.processing }"
-                                :disabled="form.processing">
-                                Log in
+                            <PrimaryButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                                Entrar
                             </PrimaryButton>
                         </div>
                     </form>

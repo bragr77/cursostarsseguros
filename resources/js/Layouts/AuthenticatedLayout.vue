@@ -8,7 +8,7 @@
         <TopMenu />
 
         <main class="h-full overflow-y-auto">
-          <div class="container px-6 mx-auto grid">
+          <div class="container-fluid px-6 mx-auto grid">
             <h2 class="my-6 text-2xl font-semibold text-gray-700">
               <slot name="header" />
             </h2>

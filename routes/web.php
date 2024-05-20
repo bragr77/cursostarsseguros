@@ -30,6 +30,9 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('/registro', [App\Http\Controllers\RegistroClienteController::class, 'create'])->name('registro.create');
+Route::post('/registro', [App\Http\Controllers\RegistroClienteController::class, 'store'])->name('registro.store');
+
 Route::middleware('auth')->group(function () {
     Route::get('/about', fn () => Inertia::render('About'))->name('about');
 
