@@ -1,5 +1,5 @@
 <template>
-    <aside class="z-20 hidden w-64 overflow-y-auto bg-white md:block flex-shrink-0">
+    <aside class="z-20 hidden w-64 overflow-y-auto bg-white lg:block flex-shrink-0">
         <div class="py-4 text-gray-500">
             <Link class="" :href="route('dashboard')">
           <div class="row">
@@ -23,7 +23,7 @@
                 </li>
 
                 <li class="relative px-6 py-3">
-                    <NavLink :href="route('users.index')" :active="route().current('users.index')">
+                    <NavLink :href="route('clientes.index')" :active="route().current('clientes.index')">
                         <template #icon>
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -32,7 +32,7 @@
                                 </path>
                             </svg>
                         </template>
-                        Users
+                        Clientes
                     </NavLink>
                 </li>
 

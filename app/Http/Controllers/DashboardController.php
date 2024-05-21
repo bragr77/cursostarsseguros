@@ -13,12 +13,15 @@ class DashboardController extends Controller
         $usuario = auth()->user();
         $role = $usuario->role_id;
 
+        $clientecount = User::where('role_id', 3)->count();
+
         if ($role !== 3) {
             $users = User::with('infocliente')->Where('role_id', 3)->get();
 
             return inertia('Home/DashboardAdmin',[
                 'usuario'  => $usuario,
                 'users'  => $users,
+                'clientecount' => $clientecount
             ]);
 
         }else{

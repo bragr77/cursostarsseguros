@@ -35,6 +35,7 @@ Route::post('/registro', [App\Http\Controllers\RegistroClienteController::class,
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
+    Route::resource('/clientes', App\Http\Controllers\ClienteController::class);
 
     Route::get('/about', fn () => Inertia::render('About'))->name('about');
 

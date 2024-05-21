@@ -10,7 +10,7 @@
         leave-active-class="transition ease-in-out duration-150" leave-from-class="opacity-100"
         leave-to-class="opacity-0 transform -translate-x-20">
         <aside v-show="$page.props.showingMobileMenu"
-            class="fixed inset-y-0 z-20 flex-shrink-0 w-64 mt-16 overflow-y-auto bg-white md:hidden">
+            class="fixed inset-y-0 z-20 flex-shrink-0 w-64 mt-16 overflow-y-auto bg-white lg:hidden">
             <div class="py-4 text-gray-500">
                 <Link class="subrayado ml-6 text-lg font-bold text-gray-800" :href="route('dashboard')">
                     StarsSeguros
@@ -31,7 +31,7 @@
                     </li>
 
                     <li class="relative px-6 py-3">
-                        <ResponsiveNavLink :href="route('users.index')" :active="route().current('users.index')">
+                        <ResponsiveNavLink :href="route('clientes.index')" :active="route().current('clientes.index')">
                             <template #icon>
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -40,7 +40,7 @@
                                     </path>
                                 </svg>
                             </template>
-                            Users
+                            Clientes
                         </ResponsiveNavLink>
                     </li>
 
