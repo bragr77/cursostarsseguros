@@ -2,9 +2,9 @@
   <Head title="Dashboard"/>
 
   <AuthenticatedLayout>
-    <template #header>
+    <!-- <template #header>
       Dashboard
-    </template>
+    </template> -->
 
     <div class="p-4 bg-white rounded-lg shadow-xs">
       You're logged in!

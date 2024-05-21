@@ -26,14 +26,16 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/dashboard', function () {
+/* Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard'); */
 
 Route::get('/registro', [App\Http\Controllers\RegistroClienteController::class, 'create'])->name('registro.create');
 Route::post('/registro', [App\Http\Controllers\RegistroClienteController::class, 'store'])->name('registro.store');
 
 Route::middleware('auth')->group(function () {
+    Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
+
     Route::get('/about', fn () => Inertia::render('About'))->name('about');
 
     Route::get('users', [UserController::class, 'index'])->name('users.index');
