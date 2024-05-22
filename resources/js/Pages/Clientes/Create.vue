@@ -1,19 +1,18 @@
 <template>
+    <Head title="Agregar" />
 
-    <Head title="Registro" />
+    <AuthenticatedLayout>
 
-    <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-lg-7">
-                <div class="card">
-                    <div class="card-header">
-                        <div class="d-flex justify-content-center">
-                            <img class="logo" src="/images/logo-horizontal.png" alt="">
-                        </div>
-                        <h3 class="text-center font-weight-light mt-3">Registrarse</h3>
-                    </div>
-                    <div class="card-body">
-                        <form @submit.prevent="submit">
+        <div class="container-fluid p-4">
+            <div class="card">
+                <div class="card-header bg-primary-subtle">
+                    <h5 class="mt-2">
+                        <i class="fa-solid fa-user-plus text-primary"></i>
+                        Agregar Cliente
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <form @submit.prevent="submit">
                             <div class="row">
                                 <div class="col-md-6">
                                     <label for="name" class="form-label">Nombre:</label>
@@ -101,20 +100,17 @@
                                 </div>
                             </div>
                         </form>
-                    </div>
-                    <div class="card-footer text-center py-3">
-                        <div class="small"><a :href="route('login')">¿Tienes una cuenta? - Inicia sesión aquí</a></div>
-                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
+    </AuthenticatedLayout>
 </template>
 
 <script setup>
+    import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
     import InputError from '@/Components/InputError.vue';
-    import { Head, useForm } from '@inertiajs/vue3';
+    import { Head, useForm } from '@inertiajs/vue3'
     import Datepicker from 'vuejs3-datepicker';
     import InputMask from 'primevue/inputmask';
 
@@ -134,15 +130,12 @@
     });
 
     const submit = () => {
-        form.post(route('registro.store'), {
+        form.post(route('clientes.store'), {
             onFinish: () => form.reset('password', 'password_confirmation'),
         });
     };
 </script>
 
 <style scoped>
-        .logo{
-        width: 40%;
-    }
 
 </style>

@@ -1,22 +1,15 @@
 <template>
-    <Modal
-        :show="show"
-        :max-width="maxWidth"
-        :closeable="closeable"
-        @close="close"
-    >
-        <div class="px-6 py-4">
-            <div class="text-lg font-medium text-gray-900">
+    <Modal :show="show" :max-width="maxWidth" :closeable="closeable" @close="close">
+        <div class="card">
+            <div class="card-header">
                 <slot name="title" />
             </div>
-
-            <div class="mt-4 text-sm text-gray-600">
+            <div class="card-body">
                 <slot name="content" />
             </div>
-        </div>
-
-        <div class="flex flex-row justify-end px-6 py-4 bg-gray-100 text-end">
-            <slot name="footer" />
+            <div class="card-footer text-right">
+                <slot name="footer" />
+            </div>
         </div>
     </Modal>
 </template>
@@ -32,7 +25,7 @@
         },
         maxWidth: {
             type: String,
-            default: '2xl',
+            default: '4xl',
         },
         closeable: {
             type: Boolean,

@@ -4,6 +4,13 @@
 
     <AuthenticatedLayout>
         <div class="container-fluid p-4">
+
+            <div class="container-fluid d-flex justify-content-end mb-3">
+                <Link class="btn btn-primary" :href="route('clientes.create')">
+                    <i class="fa-solid fa-plus me-2"></i>Agregar Clientes
+                </Link>
+            </div>
+
             <div class="card">
                 <div class="card-header bg-primary-subtle">
                     <h5 class="mt-2">
@@ -30,10 +37,9 @@
                                     <td>{{ user.infocliente.telefono }}</td>
                                     <td>{{ formatodefecha(user.created_at) }}</td>
                                     <td>
-                                        <Link class="mr-1 btn btn-success btn-sm" :href="route('clientes.show', user.id)">Ver</Link>
-                                        <button type="button"
-                                                class="btn btn-danger btn-sm"
-                                                @click="confirmDeleteActive=true;
+                                        <Link class="mr-1 btn btn-success btn-sm"
+                                            :href="route('clientes.show', user.id)">Ver</Link>
+                                        <button type="button" class="btn btn-danger btn-sm" @click="confirmDeleteActive=true;
                                                         deleteClienteRow=user.id
                                                         deleteNombres=user.name
                                                         deleteApellidos=user.lastname">
@@ -52,31 +58,31 @@
     </AuthenticatedLayout>
 
     <ConfirmationModal :show="confirmDeleteActive">
-            <template v-slot:title>
-                Confirmación
-            </template>
+        <template v-slot:title>
+            Confirmación
+        </template>
 
-            <template v-slot:content>
-                <p class="p-4">
-                    ¿Seguro desea eliminar al Cliente:?
-                </p>
-                <p>
-                    <span class="span-delete">Nombres: </span> {{ deleteNombres }}
-                </p>
-                 <p>
-                    <span class="span-delete">Apellidos: </span> {{ deleteApellidos }}
-                </p>
-            </template>
+        <template v-slot:content>
+            <p class="p-4">
+                ¿Seguro desea eliminar al Cliente:?
+            </p>
+            <p>
+                <span class="span-delete">Nombres: </span> {{ deleteNombres }}
+            </p>
+            <p>
+                <span class="span-delete">Apellidos: </span> {{ deleteApellidos }}
+            </p>
+        </template>
 
-            <template v-slot:footer>
-                <button type="button" class="btn btn-success me-4" @click="confirmDeleteActive=false">Cancelar</button>
-                <button type="button" class="btn btn-danger" @click=" deleteCliente">Eliminar</button>
-            </template>
-        </ConfirmationModal>
+        <template v-slot:footer>
+            <button type="button" class="btn btn-success me-4" @click="confirmDeleteActive=false">Cancelar</button>
+            <button type="button" class="btn btn-danger" @click="deleteCliente">Eliminar</button>
+        </template>
+    </ConfirmationModal>
 
 </template>
 
-<!-- <script setup>
+<script setup>
     import { onMounted, ref } from 'vue';
     import { Link, router } from '@inertiajs/vue3'
     import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
@@ -90,14 +96,16 @@
     })
 
     const confirmDeleteActive = ref(false)
+    const deleteClienteRow = ref("")
 
     const formatodefecha = (created_at) => {
         moment.locale('es');
         return moment(created_at).format("LL")
-    };
+    }
 
-    const borrar = () => {
-        confirmDeleteActive = false;
+    const deleteCliente = () => {
+        router.delete(route('clientes.destroy', deleteClienteRow.value))
+        confirmDeleteActive.value = false
     }
 
     onMounted(()=>{
@@ -146,13 +154,11 @@
         });
     })
 
-</script> -->
+</script>
 
-<script>
+<!-- <script>
 
-    import { Link } from '@inertiajs/vue3'
-    import { router } from '@inertiajs/vue3'
-    import { Head } from '@inertiajs/vue3';
+    import { Link, router, Head } from '@inertiajs/vue3'
     import moment from 'moment/moment'
     import 'moment/locale/es';
 
@@ -246,7 +252,7 @@
         },
 
     }
-</script>
+</script> -->
 
 <style scoped>
 

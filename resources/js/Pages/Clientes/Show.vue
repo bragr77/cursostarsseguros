@@ -5,8 +5,11 @@
     <AuthenticatedLayout>
         <div class="container-fluid p-4">
             <div class="card">
-                <h5 class="card-header"><i class="fa-solid fa-address-book"></i> Información del cliente</h5>
-                <div class="card-body text-dark">
+                <h5 class="card-header bg-primary-subtle">
+                    <i class="fa-solid fa-address-book"></i>
+                    Información del cliente
+                </h5>
+                <div class="card-body">
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-md-6 col-lg-4">
