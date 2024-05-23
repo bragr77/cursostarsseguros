@@ -80,7 +80,7 @@
                                 </div>
                             </div>
 
-                            <div class="row mt-3">
+                            <!-- <div class="row mt-3">
                                 <div class="col-md-6">
                                     <label for="password" class="form-label">Contraseña:</label>
                                     <input type="password" class="form-control" id="password" v-model="form.password" autocomplete="new-password">
@@ -92,7 +92,7 @@
                                     <input type="password" class="form-control" id="password_confirmation" v-model="form.password_confirmation" autocomplete="new-password">
                                     <InputError class="text-errors" :message="form.errors.password_confirmation" />
                                 </div>
-                            </div>
+                            </div> -->
 
                             <div class="mt-4 mb-0">
                                 <div class="d-grid">
@@ -124,9 +124,9 @@
         direccion:'',
         role_id: '',
         email: '',
-        password: '',
+        /* password: '',
         password_confirmation: '',
-        terms: false,
+        terms: false, */
     });
 
     const submit = () => {

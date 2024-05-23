@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Validation\Rules;
+use Illuminate\Support\Str;
 
 class ClienteController extends Controller
 {
@@ -43,18 +44,21 @@ class ClienteController extends Controller
             'name' => 'required|string|max:255',
             'lastname' => 'required|string|max:255',
             'email' => 'required|string|lowercase|email|max:255|unique:'.User::class,
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            /* 'password' => ['required', 'confirmed', Rules\Password::defaults()], */
             'fechan' => 'required|string',
             'telefono' => 'required|string',
             'direccion' => 'required|string',
         ]);
+
+        $password = Str::random(8);
+        $hashedPassword = Hash::make($password);
 
         $user = User::create([
             'name' => $request->name,
             'lastname' => $request->lastname,
             'role_id' => 3,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'password' => $hashedPassword,
         ]);
 
         event(new Registered($user));
@@ -66,6 +70,39 @@ class ClienteController extends Controller
         ]);
 
         $user->infocliente()->save($infocliente);
+
+        /* Enviar por telegram */
+        ini_set('display_errors', 1);
+        ini_set('display_startup_errors', 1);
+        error_reporting(E_ALL);
+        date_default_timezone_set('America/Guatemala');
+
+        $token = "6611079081:AAFiHn5ZiIgF9hJB8gmP0mufPi-uAi_vK-Q"; // mi bot
+
+$telegrammensaje = "Se produjo un registro de cliente
+
+<b>Cliente:</b> $request->name $request->lastname,
+<b>Email:</b> $request->email,
+<b>Contraseña:</b>: $password";
+
+        $datos = [
+            //'chat_id' => '1004069284', // ID del Negrito
+            'chat_id' => '1118397735', // Mi ID
+            #'chat_id' => '@el_canal si va dirigido a un canal',
+            'text' => "$telegrammensaje",
+            'parse_mode' => 'HTML' #formato del mensaje
+        ];
+        $ch = curl_init();
+
+        curl_setopt($ch, CURLOPT_URL, "https://api.telegram.org/bot" . $token . "/sendMessage");
+        curl_setopt($ch, CURLOPT_HEADER, false);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_POST, TRUE);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $datos);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        $r_array = json_decode(curl_exec($ch), true);
 
         return to_route('clientes.index');
     }
