@@ -25,7 +25,9 @@ class DashboardController extends Controller
             ]);
 
         }else{
-            return Inertia('Home/DashboardClient');
+            return inertia('Home/DashboardClient',[
+                'usuario'  => $usuario,
+            ]);
         }
 
     }
