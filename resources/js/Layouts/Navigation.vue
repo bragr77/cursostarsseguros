@@ -2,10 +2,10 @@
     <aside class="z-20 hidden w-64 overflow-y-auto bg-white lg:block flex-shrink-0">
         <div class="py-4 text-gray-500">
             <Link class="" :href="route('dashboard')">
-          <div class="row">
-            <img class="logo-dashboard ms-5" src="/images/logostarsseguros.png" alt="">
-          </div>
-      </Link>
+            <div class="row">
+                <img class="logo-dashboard ms-5" src="/images/logostarsseguros.png" alt="">
+            </div>
+            </Link>
 
             <ul class="mt-6">
                 <li class="relative px-6 py-3">
@@ -25,32 +25,22 @@
                 <li v-if="$page.props.auth.user.role_id !== 3" class="relative px-6 py-3">
                     <NavLink :href="route('clientes.index')" :active="route().current('clientes.index')">
                         <template #icon>
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z">
-                                </path>
-                            </svg>
+                            <i class="fa-solid fa-user-group"></i>
                         </template>
                         Clientes
                     </NavLink>
                 </li>
 
-                <li v-if="$page.props.auth.user.role_id !== 3" class="relative px-6 py-3">
-                    <NavLink :href="route('clientes.index')" :active="route().current('clientes.index')">
+                <!-- <li v-if="$page.props.auth.user.role_id !== 3" class="relative px-6 py-3">
+                    <NavLink :href="route('videos.index')" :active="route().current('videos.index')">
                         <template #icon>
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z">
-                                </path>
-                            </svg>
+                            <i class="fa-solid fa-video"></i>
                         </template>
                         Videos
                     </NavLink>
-                </li>
+                </li> -->
 
-                <li class="relative px-6 py-3">
+                <!-- <li class="relative px-6 py-3">
                     <NavLink :href="route('about')" :active="route().current('about')">
                         <template #icon>
                             <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round"
@@ -62,18 +52,13 @@
                         </template>
                         About us
                     </NavLink>
-                </li>
+                </li> -->
 
-                <li class="relative px-6 py-3">
-                    <button @click="showingTwoLevelMenu = !showingTwoLevelMenu"
-                        class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800"
-                        aria-haspopup="true">
+                <li v-if="$page.props.auth.user.role_id !== 3" class="relative px-6 py-3">
+                    <button @click="showingTwoLevelMenu = !showingTwoLevelMenu" class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800" aria-haspopup="true">
                         <span class="inline-flex items-center">
-                            <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round"
-                                stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
-                                <path d="M4 6h16M4 10h16M4 14h16M4 18h16"></path>
-                            </svg>
-                            <span class="ml-4">Two-level menu</span>
+                            <i class="fa-solid fa-video icon-size"></i>
+                            <span class="ml-4">Video</span>
                         </span>
                         <svg class="w-4 h-4" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd"
@@ -81,11 +66,23 @@
                                 clip-rule="evenodd"></path>
                         </svg>
                     </button>
-                    <ul v-show="showingTwoLevelMenu"
-                        class="p-2 mt-2 space-y-2 overflow-hidden text-sm font-medium text-gray-500 rounded-md shadow-inner bg-gray-50"
-                        aria-label="submenu">
-                        <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800">
-                            <a class="w-full" href="#">Child menu</a>
+                    <ul v-show="showingTwoLevelMenu" class="p-2 mt-2 space-y-2 overflow-hidden text-sm font-medium text-gray-500 rounded-md shadow-inner bg-gray-50"  aria-label="submenu">
+                        <li class="relative px-6 py-3">
+                            <NavLink :href="route('temas.index')" :active="route().current('temas.index')">
+                                <template #icon>
+                                    <i class="fa-solid fa-book"></i>
+                                </template>
+                                Temas
+                            </NavLink>
+                        </li>
+
+                        <li class="relative px-6 py-3">
+                            <NavLink :href="route('videos.index')" :active="route().current('videos.index')">
+                                <template #icon>
+                                    <i class="fa-solid fa-video"></i>
+                                </template>
+                                Videos
+                            </NavLink>
                         </li>
                     </ul>
                 </li>
@@ -126,5 +123,9 @@
 
     .logo-dashboard{
         width: 65%;
+    }
+
+    .icon-size{
+        font-size: 16px;
     }
 </style>

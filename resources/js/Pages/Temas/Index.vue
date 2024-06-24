@@ -1,48 +1,46 @@
 <template>
 
-    <Head title="clientes" />
+    <Head title="temas" />
 
     <AuthenticatedLayout>
         <div class="container-fluid p-4">
-
             <div class="container-fluid d-flex justify-content-end mb-3">
-                <Link class="btn btn-primary" :href="route('clientes.create')">
-                    <i class="fa-solid fa-plus me-2"></i>Agregar Clientes
+                <Link class="btn btn-primary" :href="route('temas.create')">
+                <i class="fa-solid fa-plus me-2"></i>Agregar Clientes
                 </Link>
             </div>
 
             <div class="card">
                 <div class="card-header bg-primary-subtle">
                     <h5 class="mt-2">
-                        <i class="fa-solid fa-user-group text-primary"></i>
-                        Clientes
+                        <i class="fa-solid fa-book"></i>
+                        Temas
                     </h5>
                 </div>
                 <div class="card-body ">
                     <div class="table-responsive-sm">
-                        <table id="tablecliente" class="table table-hover">
+                        <table id="tabletemas" class="table table-hover">
                             <thead>
                                 <tr>
                                     <th scope="col">N°</th>
-                                    <th scope="col">Nombre y Apellido</th>
-                                    <th scope="col">Teléfono</th>
-                                    <th scope="col">Fecha de Registro</th>
+                                    <th scope="col">Nombre del Tema</th>
+                                    <th scope="col">Descripcion</th>
+                                    <th scope="col">Fecha de creación</th>
                                     <th scope="col">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="(user, index) in users" :key="user.id">
+                                <tr v-for="(tema, index) in temas" :key="tema.id">
                                     <td scope="row">{{ index + 1 }}</td>
-                                    <td>{{ user.name }} {{ user.lastname }}</td>
-                                    <td>{{ user.infocliente.telefono }}</td>
-                                    <td>{{ formatodefecha(user.created_at) }}</td>
+                                    <td>{{ tema.nombre_tema }}</td>
+                                    <td>{{ tema.descripcion }}</td>
+                                    <td>{{ formatodefecha(tema.created_at) }}</td>
                                     <td>
                                         <Link class="mr-1 btn btn-success btn-sm"
-                                            :href="route('clientes.show', user.id)">Ver</Link>
+                                            :href="route('temas.show', tema.id)">Ver</Link>
                                         <button type="button" class="btn btn-danger btn-sm" @click="confirmDeleteActive=true;
-                                                        deleteClienteRow=user.id
-                                                        deleteNombres=user.name
-                                                        deleteApellidos=user.lastname">
+                                                        deleteClienteRow=tema.id
+                                                        deleteNombres=tema.nombre_tema">
                                             Eliminar
                                         </button>
 
@@ -55,30 +53,27 @@
             </div>
         </div>
 
+        <ConfirmationModal :show="confirmDeleteActive">
+            <template v-slot:title>
+                Confirmación
+            </template>
+
+            <template v-slot:content>
+                <p class="p-4">
+                    ¿Seguro desea eliminar el Tema:?
+                </p>
+                <p>
+                    <span class="span-delete">Tema: </span> {{ deleteNombres }}
+                </p>
+
+            </template>
+
+            <template v-slot:footer>
+                <button type="button" class="btn btn-success me-4" @click="confirmDeleteActive = false">Cancelar</button>
+                <button type="button" class="btn btn-danger" @click="deleteCliente">Eliminar</button>
+            </template>
+        </ConfirmationModal>
     </AuthenticatedLayout>
-
-    <ConfirmationModal :show="confirmDeleteActive">
-        <template v-slot:title>
-            Confirmación
-        </template>
-
-        <template v-slot:content>
-            <p class="p-4">
-                ¿Seguro desea eliminar al Cliente:?
-            </p>
-            <p>
-                <span class="span-delete">Nombres: </span> {{ deleteNombres }}
-            </p>
-            <p>
-                <span class="span-delete">Apellidos: </span> {{ deleteApellidos }}
-            </p>
-        </template>
-
-        <template v-slot:footer>
-            <button type="button" class="btn btn-success me-4" @click="confirmDeleteActive=false">Cancelar</button>
-            <button type="button" class="btn btn-danger" @click="deleteCliente">Eliminar</button>
-        </template>
-    </ConfirmationModal>
 
 </template>
 
@@ -92,7 +87,7 @@
     import 'moment/locale/es';
 
     defineProps({
-        users: Object,
+        temas: Object,
     })
 
     const confirmDeleteActive = ref(false)
@@ -109,7 +104,7 @@
     }
 
     onMounted(()=>{
-        let table = new DataTable('#tablecliente', {
+        let table = new DataTable('#tabletemas', {
             language: {
                             "sShow": "Mostrar",
                             "sLengthMenu":      'Mostrar <select class="ancho-input custom-select custom-select-sm form-control form-control-sm">'+
@@ -155,7 +150,3 @@
     })
 
 </script>
-
-<style scoped>
-
-</style>
