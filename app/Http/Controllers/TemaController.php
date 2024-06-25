@@ -60,7 +60,11 @@ class TemaController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $tema = Temavideo::find($id);
+
+        return inertia('Temas/Edit',[
+            'tema' => $tema,
+        ]);
     }
 
     /**
@@ -68,7 +72,19 @@ class TemaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'nombre_tema' => 'required|string|max:255',
+            'descripcion' => 'required|string|max:255',
+        ]);
+
+        $tema = Temavideo::find($id);
+
+        $tema->nombre_tema = $request->nombre_tema;
+        $tema->descripcion = $request->descripcion;
+
+        $tema->save();
+
+        return to_route('temas.index');
     }
 
     /**

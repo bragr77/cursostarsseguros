@@ -37,7 +37,7 @@
                                     <td>{{ formatodefecha(tema.created_at) }}</td>
                                     <td>
                                         <Link class="mr-1 btn btn-success btn-sm"
-                                            :href="route('temas.show', tema.id)">Ver</Link>
+                                            :href="route('temas.edit', tema.id)">Editar</Link>
                                         <button type="button" class="btn btn-danger btn-sm" @click="confirmDeleteActive=true;
                                                         deleteClienteRow=tema.id
                                                         deleteNombres=tema.nombre_tema">

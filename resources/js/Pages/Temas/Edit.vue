@@ -1,6 +1,6 @@
 <template>
 
-    <Head title="Agregar Tema" />
+    <Head title="Editar Tema" />
 
     <AuthenticatedLayout>
 
@@ -9,7 +9,7 @@
                 <div class="card-header bg-primary-subtle">
                     <h5 class="mt-2">
                         <i class="fa-solid fa-book text-primary"></i>
-                        Agregar Tema
+                        Editar Tema
                     </h5>
                 </div>
                 <div class="card-body">
@@ -56,16 +56,20 @@
     import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
     import { Head, useForm } from '@inertiajs/vue3'
 
-    const props = defineProps(['errors'])
+    const props = defineProps({
+        tema: Object,
+        errors: Object,
+    });
 
     const form = useForm({
-        nombre_tema: '',
-        descripcion: '',
+        id: props.tema.id,
+        nombre_tema: props.tema.nombre_tema,
+        descripcion: props.tema.descripcion,
     });
 
     const submit = () => {
         /* form.post(route('temas.store'), form); */
-        form.post(route('temas.store'));
+        form.put(route('temas.update', form.id));
     };
 </script>
 
