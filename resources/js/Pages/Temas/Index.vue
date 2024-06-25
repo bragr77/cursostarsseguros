@@ -6,7 +6,7 @@
         <div class="container-fluid p-4">
             <div class="container-fluid d-flex justify-content-end mb-3">
                 <Link class="btn btn-primary" :href="route('temas.create')">
-                <i class="fa-solid fa-plus me-2"></i>Agregar Clientes
+                    <i class="fa-solid fa-plus me-2"></i>Agregar Clientes
                 </Link>
             </div>
 
@@ -99,7 +99,7 @@
     }
 
     const deleteCliente = () => {
-        router.delete(route('clientes.destroy', deleteClienteRow.value))
+        router.delete(route('temas.destroy', deleteClienteRow.value))
         confirmDeleteActive.value = false
     }
 

@@ -24,7 +24,7 @@ class TemaController extends Controller
      */
     public function create()
     {
-        //
+        return inertia('Temas/Create');
     }
 
     /**
@@ -32,7 +32,19 @@ class TemaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nombre_tema' => 'required|string|max:255',
+            'descripcion' => 'required|string|max:255',
+        ]);
+
+        $temavideo = Temavideo::create([
+            'nombre_tema' => $request->nombre_tema,
+            'descripcion' => $request->descripcion,
+        ]);
+
+        $temavideo->save();
+
+        return to_route('temas.index');
     }
 
     /**
@@ -64,6 +76,8 @@ class TemaController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $tema = Temavideo::find($id);
+
+        $tema->delete();
     }
 }
