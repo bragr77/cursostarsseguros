@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('portada');
             $table->bigInteger('tema_id')->unsigned();
 
-            $table->foreign('tema_id')->references('id')->on('videos')
+            $table->foreign('tema_id')->references('id')->on('temavideos')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 

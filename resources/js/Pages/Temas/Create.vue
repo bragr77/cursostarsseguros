@@ -32,7 +32,7 @@
                                     <input type="text" class="form-control" id="name" v-model="form.descripcion">
                                     <div v-if="errors.descripcion">
                                         <div class="text-errors">
-                                            El campo Nombre del tema es obligatorio
+                                            El campo Descripción del tema es obligatorio
                                         </div>
                                     </div>
                                 </div>

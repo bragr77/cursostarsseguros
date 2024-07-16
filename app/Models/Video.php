@@ -12,8 +12,11 @@ class Video extends Model
     protected $table = 'videos';
 
     protected $fillable = [
-        'nombre_tema',
+        'titulo',
         'descripcion',
+        'archivo',
+        'portada',
+        'tema_id',
     ];
 
     public function temavideo(){

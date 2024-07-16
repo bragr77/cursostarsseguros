@@ -4,12 +4,12 @@
         <Head title="Log in" />
 
         <div class="flex flex-col overflow-y-auto md:flex-row">
-            <div class="h-32 md:h-auto md:w-1/2 card">
+            <div class="h-32 md:h-auto md:w-1/2 card m-1">
                 <img aria-hidden="true" class="my-auto" src="/images/login-logo.jpg" alt="login" />
             </div>
             <div class="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
                 <div class="w-full">
-                    <h1 class="mb-4 text-xl font-semibold text-gray-700">Login</h1>
+                    <h1 class="mb-4 text-xl font-semibold text-gray-700">Iniciar Sesión</h1>
 
                     <div v-if="status" class="mb-4 text-sm font-medium text-green-600">
                         {{ status }}

@@ -77,11 +77,11 @@
                         </li>
 
                         <li class="relative px-6 py-3">
-                            <NavLink :href="route('videos.index')" :active="route().current('videos.index')">
+                            <NavLink :href="route('cursos.index')" :active="route().current('cursos.index')">
                                 <template #icon>
                                     <i class="fa-solid fa-video"></i>
                                 </template>
-                                Videos
+                                Cursos
                             </NavLink>
                         </li>
                     </ul>
