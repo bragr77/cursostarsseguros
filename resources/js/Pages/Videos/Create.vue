@@ -3,6 +3,23 @@
     <Head title="Agregar Video" />
 
     <AuthenticatedLayout>
+        <LoadingModal :show="mostrarloading">
+            <template v-slot:title>
+                Culminando Registro
+            </template>
+
+            <template v-slot:content>
+                <p class="p-4">
+                    Espere por favor.
+                </p>
+                <!-- <p>
+                    <span class="span-delete">Nombres: </span> {{ this.deleteNombres }}
+                </p>
+                 <p>
+                    <span class="span-delete">Apellidos: </span> {{ this.deleteApellidos }}
+                </p> -->
+            </template>
+        </LoadingModal>
 
         <div class="container-fluid p-4">
             <div class="card">
@@ -75,7 +92,7 @@
 
                         <div class="mt-4 mb-0">
                             <div class="d-grid">
-                                <button type="submit" class="btn btn-primary btn-block">Enviar</button>
+                                <button type="submit" @click="mostrarloading=true" class="btn btn-primary btn-block">Enviar</button>
                             </div>
                         </div>
                     </form>
@@ -89,9 +106,14 @@
 
 <script setup>
     import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+    import { ref } from 'vue';
     import { Head, useForm } from '@inertiajs/vue3'
+    import LoadingModal from '@/Components/LoadingModal.vue'
 
     const props = defineProps(['errors', 'temas'])
+
+
+    const mostrarloading = ref(false)
 
     const form = useForm({
         titulo: null,

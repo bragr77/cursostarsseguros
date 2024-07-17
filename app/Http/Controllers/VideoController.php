@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Temavideo;
 use App\Models\Video;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class VideoController extends Controller
 {
@@ -47,11 +48,13 @@ class VideoController extends Controller
             'archivo' => 'required|mimes:mp4',
         ]);
 
-        $data['portada'] = $filenameportada = time().".".$request['portada']->extension();
+        /* $data['portada'] = $filenameportada = time().".".$request['portada']->extension(); */
+        $data['portada'] = $filenameportada = $request->titulo.".".$request['portada']->extension();
 
         $request->portada->move(public_path("videos/portadas"), $filenameportada);
 
-        $data['archivo'] = $filenamearchivo = time().".".$request['archivo']->extension();
+        /* $data['archivo'] = $filenamearchivo = time().".".$request['archivo']->extension(); */
+        $data['archivo'] = $filenamearchivo = $request->titulo.".".$request['archivo']->extension();
 
         $request->archivo->move(public_path("videos"), $filenamearchivo);
 
@@ -101,6 +104,9 @@ class VideoController extends Controller
     public function destroy(string $id)
     {
         $video = Video::find($id);
+
+        Storage::disk("public_upload")->delete("videos/portadas/".$video->portada);
+        Storage::disk("public_upload")->delete("videos/".$video->archivo);
 
         $video->delete();
 
