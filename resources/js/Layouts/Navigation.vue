@@ -58,7 +58,7 @@
                     <button @click="showingTwoLevelMenu = !showingTwoLevelMenu" class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800" aria-haspopup="true">
                         <span class="inline-flex items-center">
                             <i class="fa-solid fa-video icon-size"></i>
-                            <span class="ml-4">Video</span>
+                            <span class="ml-4">Videos</span>
                         </span>
                         <svg class="w-4 h-4" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd"

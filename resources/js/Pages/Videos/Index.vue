@@ -45,7 +45,7 @@
                                     </td>
                                     <td>
                                         <Link class="mr-1 btn btn-success btn-sm"
-                                            :href="route('cursos.edit', video.id)">Editar</Link>
+                                            :href="route('cursos.show', video.id)">ver</Link>
                                         <button type="button" class="btn btn-danger btn-sm" @click="confirmDeleteActive=true;
                                                         deleteClienteRow=video.id
                                                         deleteNombres=video.titulo">

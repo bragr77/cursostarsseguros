@@ -20,6 +20,6 @@ class Video extends Model
     ];
 
     public function temavideo(){
-        return $this->belongsTo(Temavideo::class);
+        return $this->belongsTo(Temavideo::class, 'tema_id');
     }
 }

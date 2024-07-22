@@ -79,7 +79,14 @@ class VideoController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $video = video::find($id);
+
+        $tema = $video->temavideo;
+
+        return inertia('Videos/Show', [
+            'video' => $video,
+            'tema' => $tema,
+        ]);
     }
 
     /**

@@ -62,7 +62,7 @@
                                 <label for="tema_id" class="form-label">Tema:</label>
                                 <select class="form-select" aria-label="Default select example" id="tema_id" v-model="form.tema_id">
                                     <option :value="null">Selecciona....</option>
-                                    <option v-for="tema in temas" :key="tema.id" :value="tema.id">{{ tema.id }} {{ tema.nombre_tema }}
+                                    <option v-for="tema in temas" :key="tema.id" :value="tema.id">{{ tema.nombre_tema }}
                                     </option>
                                 </select>
 

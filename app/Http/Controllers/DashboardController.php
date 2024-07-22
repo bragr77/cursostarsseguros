@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Video;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -15,13 +16,16 @@ class DashboardController extends Controller
 
         $clientecount = User::where('role_id', 3)->count();
 
+        $videoscount = Video::all()->count();
+
         if ($role !== 3) {
             $users = User::with('infocliente')->Where('role_id', 3)->get();
 
             return inertia('Home/DashboardAdmin',[
                 'usuario'  => $usuario,
                 'users'  => $users,
-                'clientecount' => $clientecount
+                'clientecount' => $clientecount,
+                'videoscount' => $videoscount,
             ]);
 
         }else{

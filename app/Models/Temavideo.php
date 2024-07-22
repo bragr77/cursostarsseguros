@@ -17,6 +17,6 @@ class Temavideo extends Model
     ];
 
     public function video(){
-        return $this->hasOne(Video::class);
+        return $this->hasMany(Video::class, 'tema_id');
     }
 }
